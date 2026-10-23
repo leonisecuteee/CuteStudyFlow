@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Task Manager{% endblock %}
+{% block header_title %}Task Manager{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <div class="section-header flex-between">
+        <h2>Manage Your Tasks</h2>
+        <button id="open-task-modal" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add New Task</button>
+    </div>
+
+    <!-- Search and Filters Bar -->
+    <div class="filters-bar card">
+        <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="task-search" placeholder="Search tasks...">
+        </div>
+        <div class="filter-group">
+            <select id="filter-status">
+                <option value="all">All Statuses</option>
+                <option value="pending">Pending</option>
+                <option value="completed">Completed</option>
+            </select>
+            <select id="filter-priority">
+                <option value="all">All Priorities</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <select id="filter-subject">
+                <option value="all">All Subjects</option>
+                <!-- Populated dynamically -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Tasks Table -->
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Task Title</th>
+                    <th>Subject</th>
+                    <th>Priority</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="task-table-body">
+                <!-- Dynamically populated -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Task Modal (Add / Edit) -->
+<div id="task-modal" class="modal">
+    <div class="modal-content card">
+        <div class="modal-header">
+            <h3 id="modal-title">Add Task</h3>
+            <button id="close-task-modal" class="close-btn">&times;</button>
+        </div>
+        <form id="task-form">
+            <input type="hidden" id="task-id">
+            <div class="form-group">
+                <label for="task-title-input">Task Title</label>
+                <input type="text" id="task-title-input" placeholder="e.g. Chapter 4 Assignment" required>
+            </div>
+            <div class="form-group">
+                <label for="task-subject-input">Subject / Category</label>
+                <input type="text" id="task-subject-input" placeholder="e.g. Mathematics, Computer Science" required>
+            </div>
+            <div class="form-group">
+                <label for="task-priority-input">Priority</label>
+                <select id="task-priority-input" required>
+                    <option value="High">High</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="task-due-input">Due Date / Deadline</label>
+                <input type="date" id="task-due-input" required>
+            </div>
+            <div class="modal-actions">
+                <button type="button" id="cancel-task" class="btn btn-warning">Cancel</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Task</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

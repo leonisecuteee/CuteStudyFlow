@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Dashboard{% endblock %}
+{% block header_title %}Dashboard{% endblock %}
+
+{% block content %}
+<section id="dashboard-section" class="content-section active">
+    <div class="welcome-banner">
+        <div>
+            <p class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Your cozy study space</p>
+            <h2 id="dashboard-greeting">Welcome back</h2>
+            <p id="dashboard-motivation">Small, consistent study sessions add up. Let’s make today gentle and productive.</p>
+            <p class="welcome-date" id="dashboard-date"></p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+            <i class="fa-solid fa-book-open"></i>
+            <i class="fa-solid fa-star deco-star"></i>
+            <i class="fa-solid fa-heart deco-heart"></i>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon icon-lavender"><i class="fa-solid fa-list-check"></i></div>
+            <div class="stat-info">
+                <h3>Total Tasks</h3>
+                <p id="stat-total-tasks">0</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon icon-mint"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-info">
+                <h3>Completed Tasks</h3>
+                <p id="stat-completed-tasks">0</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon icon-pink"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div class="stat-info">
+                <h3>Pending Tasks</h3>
+                <p id="stat-pending-tasks">0</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon icon-blue"><i class="fa-solid fa-bell"></i></div>
+            <div class="stat-info">
+                <h3>Upcoming Deadlines</h3>
+                <p id="stat-upcoming-deadlines">0</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon icon-cream"><i class="fa-solid fa-seedling"></i></div>
+            <div class="stat-info">
+                <h3>Study Progress</h3>
+                <p id="stat-study-progress">0%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card progress-panel">
+        <div class="flex-between">
+            <h2><i class="fa-solid fa-chart-pie"></i> Study Progress</h2>
+            <span class="badge badge-subject" id="progress-label">0% complete</span>
+        </div>
+        <p class="muted">Based on completed tasks in your planner. This stays empty until you add real work.</p>
+        <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="dashboard-progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <a class="quick-action" href="{{ url_for('tasks_page') }}?add=1">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Task</span>
+        </a>
+        <a class="quick-action" href="{{ url_for('notes_page') }}?add=1">
+            <i class="fa-solid fa-pen-nib"></i>
+            <span>Add Note</span>
+        </a>
+        <a class="quick-action" href="{{ url_for('timer_page') }}">
+            <i class="fa-solid fa-stopwatch"></i>
+            <span>Start Focus Timer</span>
+        </a>
+        <a class="quick-action" href="{{ url_for('quiz_page') }}">
+            <i class="fa-solid fa-brain"></i>
+            <span>Take Quiz</span>
+        </a>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <h2><i class="fa-solid fa-star"></i> Upcoming Tasks</h2>
+            <ul id="dashboard-tasks-preview" class="preview-list">
+                <li class="empty-state"><i class="fa-solid fa-clipboard"></i>Loading tasks...</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2><i class="fa-solid fa-mug-hot"></i> Today's Study Schedule</h2>
+            <ul id="dashboard-today-schedule" class="preview-list">
+                <li class="empty-state"><i class="fa-solid fa-calendar"></i>Loading schedule...</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Study Planner{% endblock %}
+{% block header_title %}Study Planner{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <div class="section-header flex-between">
+        <h2>Study Schedule</h2>
+        <button id="open-planner-modal" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Study Session</button>
+    </div>
+
+    <!-- View Switcher & Filters -->
+    <div class="filters-bar card flex-between">
+        <div class="view-toggle">
+            <button id="view-daily-btn" class="btn btn-sm btn-primary">Daily View</button>
+            <button id="view-weekly-btn" class="btn btn-sm btn-outline">Weekly View</button>
+        </div>
+        <div class="filter-group">
+            <label for="planner-date-filter" style="font-size: 13px; font-weight: 600; color: var(--text-muted); align-self: center;">Filter Date:</label>
+            <input type="date" id="planner-date-filter">
+        </div>
+    </div>
+
+    <!-- Daily View Table -->
+    <div id="daily-view-container" class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Subject</th>
+                    <th>Topic</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="planner-daily-tbody">
+                <!-- Dynamically populated -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Weekly View Container -->
+    <div id="weekly-view-container" class="weekly-grid-container" style="display: none;">
+        <!-- Dynamically populated grid of days -->
+    </div>
+</section>
+
+<!-- Study Session Modal (Add / Edit) -->
+<div id="planner-modal" class="modal">
+    <div class="modal-content card">
+        <div class="modal-header">
+            <h3 id="planner-modal-title">Add Study Session</h3>
+            <button id="close-planner-modal" class="close-btn">&times;</button>
+        </div>
+        <form id="planner-form">
+            <input type="hidden" id="planner-id">
+            <div class="form-group">
+                <label for="planner-subject-input">Subject</label>
+                <input type="text" id="planner-subject-input" placeholder="e.g. Physics, History" required>
+            </div>
+            <div class="form-group">
+                <label for="planner-topic-input">Topic / Description</label>
+                <input type="text" id="planner-topic-input" placeholder="e.g. Quantum Mechanics Chapter 2" required>
+            </div>
+            <div class="form-group">
+                <label for="planner-date-input">Study Date</label>
+                <input type="date" id="planner-date-input" required>
+            </div>
+            <div class="form-group-row" style="display: flex; gap: 12px; width: 100%;">
+                <div class="form-group" style="flex: 1;">
+                    <label for="planner-start-time">Start Time</label>
+                    <input type="time" id="planner-start-time" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label for="planner-end-time">End Time</label>
+                    <input type="time" id="planner-end-time" required>
+                </div>
+            </div>
+            <div id="planner-form-error" class="error-msg" style="color: var(--danger); font-size: 13px; display: none; width: 100%;"></div>
+            <div class="modal-actions">
+                <button type="button" id="cancel-planner" class="btn btn-warning">Cancel</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Session</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

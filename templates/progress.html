@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Progress Tracker{% endblock %}
+{% block header_title %}Progress Tracker{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <!-- Key Statistics Overview Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-tasks"></i></div>
+            <div class="stat-info">
+                <h3>Task Completion Rate</h3>
+                <p id="progress-completion-rate">0%</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-info">
+                <h3>Total Focus Time</h3>
+                <p id="progress-total-focus">0 min</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <div class="stat-info">
+                <h3>Study Sessions</h3>
+                <p id="progress-total-sessions">0</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-exclamation-triangle"></i></div>
+            <div class="stat-info">
+                <h3>Overdue Tasks</h3>
+                <p id="progress-overdue-tasks" style="color: var(--danger);">0</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Task & Study Breakdown Grid -->
+    <div class="dashboard-grid" style="margin-bottom: 32px;">
+        <!-- Task Status Breakdown -->
+        <div class="card">
+            <h2><i class="fa-solid fa-list-check"></i> Task Status Summary</h2>
+            <div style="margin-top: 16px;">
+                <div class="flex-between" style="margin-bottom: 8px;">
+                    <span>Completed Tasks</span>
+                    <strong id="progress-completed-tasks">0</strong>
+                </div>
+                <div class="progress-bar-bg" style="background: var(--border); border-radius: 10px; height: 10px; overflow: hidden; margin-bottom: 16px;">
+                    <div id="progress-bar-completed" style="background: var(--success); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+                </div>
+
+                <div class="flex-between" style="margin-bottom: 8px;">
+                    <span>Pending Tasks</span>
+                    <strong id="progress-pending-tasks">0</strong>
+                </div>
+                <div class="progress-bar-bg" style="background: var(--border); border-radius: 10px; height: 10px; overflow: hidden; margin-bottom: 16px;">
+                    <div id="progress-bar-pending" style="background: var(--warning); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+                </div>
+
+                <div class="flex-between" style="margin-bottom: 8px;">
+                    <span>Overdue Tasks</span>
+                    <strong id="progress-overdue-count">0</strong>
+                </div>
+                <div class="progress-bar-bg" style="background: var(--border); border-radius: 10px; height: 10px; overflow: hidden;">
+                    <div id="progress-bar-overdue" style="background: var(--danger); width: 0%; height: 100%; transition: width 0.3s ease;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Performance Summary -->
+        <div class="card">
+            <h2><i class="fa-solid fa-brain"></i> Quiz Performance Overview</h2>
+            <div style="margin-top: 16px;">
+                <div class="flex-between" style="margin-bottom: 12px;">
+                    <span>Average Quiz Score</span>
+                    <strong id="progress-avg-quiz-score">0%</strong>
+                </div>
+                <div class="flex-between" style="margin-bottom: 12px;">
+                    <span>Total Quizzes Taken</span>
+                    <strong id="progress-total-quizzes">0</strong>
+                </div>
+                <div class="flex-between" style="margin-bottom: 12px;">
+                    <span>Best Subject Category</span>
+                    <strong id="progress-best-quiz-category">N/A</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Charts Section -->
+    <div class="dashboard-grid">
+        <div class="card">
+            <h2><i class="fa-solid fa-chart-column"></i> Daily & Weekly Activity Bar Chart</h2>
+            <div style="margin-top: 20px; position: relative; height: 260px;">
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fa-solid fa-chart-pie"></i> Study Subject Distribution</h2>
+            <div style="margin-top: 20px; position: relative; height: 260px;">
+                <canvas id="subjectChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}

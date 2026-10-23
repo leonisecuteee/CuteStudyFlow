@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Practice Quiz{% endblock %}
+{% block header_title %}Practice Quiz{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <!-- Category Selection View -->
+    <div id="quiz-select-view" class="card" style="max-width: 700px; margin: 0 auto;">
+        <h2><i class="fa-solid fa-brain"></i> Select Quiz Category</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Choose a subject to test your knowledge and track your progress.</p>
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="quiz-category-select">Category</label>
+            <select id="quiz-category-select">
+                <option value="Mathematics">Mathematics</option>
+                <option value="Science">Science</option>
+                <option value="Computer Programming">Computer Programming</option>
+                <option value="General Knowledge">General Knowledge</option>
+            </select>
+        </div>
+        <button id="start-quiz-btn" class="btn btn-primary"><i class="fa-solid fa-play"></i> Start Quiz</button>
+    </div>
+
+    <!-- Active Question View -->
+    <div id="quiz-active-view" class="quiz-card" style="display: none;">
+        <div class="flex-between" style="margin-bottom: 20px; font-weight: 600; color: var(--text-muted);">
+            <span id="quiz-cat-display">Category</span>
+            <span id="quiz-progress-display">Question 1 of 5</span>
+        </div>
+        <h3 id="quiz-question-text" style="font-size: 18px; text-align: left; margin-bottom: 20px;">Question goes here?</h3>
+        <div id="quiz-options-container" class="quiz-options">
+            <!-- Options populated dynamically -->
+        </div>
+        <div id="quiz-explanation-box" class="explanation-box" style="display: none; margin-top: 20px; padding: 12px; background-color: #eef2ff; border-radius: var(--radius); text-align: left; font-size: 14px;">
+            <!-- Explanation populated dynamically -->
+        </div>
+        <div style="margin-top: 24px; text-align: right;">
+            <button id="next-question-btn" class="btn btn-primary" style="display: none;">Next Question <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Quiz Results View -->
+    <div id="quiz-results-view" class="quiz-card" style="display: none;">
+        <i class="fa-solid fa-trophy" style="font-size: 48px; color: var(--warning); margin-bottom: 16px;"></i>
+        <h2>Quiz Completed!</h2>
+        <p style="font-size: 20px; font-weight: 700; color: var(--primary); margin: 12px 0;" id="quiz-final-score">Your Score: 0 / 0</p>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Your result has been saved to your history.</p>
+        <button id="retake-quiz-btn" class="btn btn-primary"><i class="fa-solid fa-rotate-right"></i> Retake Quiz</button>
+    </div>
+
+    <!-- Quiz History Section -->
+    <div class="card" style="margin-top: 32px;">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Quiz History</h2>
+        <div class="table-container" style="margin-top: 16px;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Percentage</th>
+                        <th>Date Taken</th>
+                    </tr>
+                </thead>
+                <tbody id="quiz-history-tbody">
+                    <!-- History rows populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Privacy Policy{% endblock %}
+{% block header_title %}Privacy Policy{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <div class="card" style="max-width: 900px; margin: 0 auto; line-height: 1.7;">
+        <h2><i class="fa-solid fa-shield-halved"></i> Privacy Policy</h2>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Last updated: October 19, 2026</p>
+
+        <h3 style="font-size: 16px; margin-top: 20px; margin-bottom: 8px;">1. Overview</h3>
+        <p style="margin-bottom: 16px;">
+            StudyFlow is committed to respecting your privacy. This Privacy Policy describes how your information is processed when using the StudyFlow application.
+        </p>
+
+        <h3 style="font-size: 16px; margin-top: 20px; margin-bottom: 8px;">2. Data Storage & Management</h3>
+        <p style="margin-bottom: 16px;">
+            All data created within StudyFlow—including tasks, study schedules, notes, focus session logs, and quiz results—is stored locally in a SQLite database (<code>studyflow.db</code>).
+        </p>
+
+        <h3 style="font-size: 16px; margin-top: 20px; margin-bottom: 8px;">3. Data Sharing & Third Parties</h3>
+        <p style="margin-bottom: 16px;">
+            StudyFlow operates locally on your system. We do not sell, share, transmit, or license your personal information or study data to third-party services or data brokers.
+        </p>
+
+        <h3 style="font-size: 16px; margin-top: 20px; margin-bottom: 8px;">4. Data Deletion & Control</h3>
+        <p style="margin-bottom: 16px;">
+            You retain full control over your data. Individual tasks, study sessions, and notes can be deleted directly within the interface. To perform a complete data reset, you may delete the local database file (<code>studyflow.db</code>) while the application is stopped.
+        </p>
+
+        <h3 style="font-size: 16px; margin-top: 20px; margin-bottom: 8px;">5. Security Limitations</h3>
+        <p style="margin-bottom: 16px;">
+            While StudyFlow utilizes standard relational database queries and parameterized statements to protect against common database vulnerabilities, local database files rely on your operating system's filesystem permissions for physical access security.
+        </p>
+
+        <h3 style="font-size: 16px; margin-top: 20px; margin-bottom: 8px;">6. Developer Contact Method</h3>
+        <p style="margin-bottom: 16px;">
+            If you have questions, feedback, or inquiries regarding StudyFlow, please contact the development team at <a href="mailto:support@studyflow.local" style="color: var(--primary); text-decoration: none; font-weight: 600;">support@studyflow.local</a>.
+        </p>
+    </div>
+</section>
+{% endblock %}

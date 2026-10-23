@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Notes & Reviewers{% endblock %}
+{% block header_title %}Notes & Reviewers{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <div class="section-header flex-between">
+        <h2>Study Notes & Reviewers</h2>
+        <button id="open-note-modal" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create Note</button>
+    </div>
+
+    <!-- Search and Subject Filters -->
+    <div class="filters-bar card">
+        <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="note-search" placeholder="Search notes by title or content...">
+        </div>
+        <div class="filter-group">
+            <select id="filter-note-subject">
+                <option value="all">All Subjects</option>
+                <!-- Populated dynamically -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Notes Grid Container -->
+    <div class="notes-grid" id="notes-grid-container">
+        <!-- Dynamically populated -->
+    </div>
+</section>
+
+<!-- Note Modal (Create / Edit) -->
+<div id="note-modal" class="modal">
+    <div class="modal-content card">
+        <div class="modal-header">
+            <h3 id="note-modal-title">Create Note</h3>
+            <button id="close-note-modal" class="close-btn">&times;</button>
+        </div>
+        <form id="note-form">
+            <input type="hidden" id="note-id">
+            <div class="form-group">
+                <label for="note-title-input">Title</label>
+                <input type="text" id="note-title-input" placeholder="e.g. Midterm Physics Reviewer" required>
+            </div>
+            <div class="form-group">
+                <label for="note-subject-input">Subject / Course</label>
+                <input type="text" id="note-subject-input" placeholder="e.g. Physics, History" required>
+            </div>
+            <div class="form-group">
+                <label for="note-content-input">Note Content / Summary</label>
+                <textarea id="note-content-input" placeholder="Write your reviewer notes, formulas, or key concepts here..." rows="6" required></textarea>
+            </div>
+            <div class="modal-actions">
+                <button type="button" id="cancel-note" class="btn btn-warning">Cancel</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Note</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

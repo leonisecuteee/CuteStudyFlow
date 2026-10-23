@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StudyFlow - Student Productivity Hub{% endblock %}</title>
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('studyflow-theme');
+                var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <aside class="sidebar" id="app-sidebar">
+            <div class="logo">
+                <span class="logo-mark" aria-hidden="true">
+                    <i class="fa-solid fa-book-open"></i>
+                </span>
+                <span class="logo-text">
+                    StudyFlow
+                    <small>cute study planner</small>
+                </span>
+            </div>
+            <nav class="nav-menu" aria-label="Main">
+                <a href="{{ url_for('dashboard') }}" class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="{{ url_for('tasks_page') }}" class="nav-item {% if request.endpoint == 'tasks_page' %}active{% endif %}"><i class="fa-solid fa-list-check"></i> Tasks</a>
+                <a href="{{ url_for('planner_page') }}" class="nav-item {% if request.endpoint == 'planner_page' %}active{% endif %}"><i class="fa-solid fa-calendar-days"></i> Schedule</a>
+                <a href="{{ url_for('notes_page') }}" class="nav-item {% if request.endpoint == 'notes_page' %}active{% endif %}"><i class="fa-solid fa-note-sticky"></i> Notes</a>
+                <a href="{{ url_for('timer_page') }}" class="nav-item {% if request.endpoint == 'timer_page' %}active{% endif %}"><i class="fa-solid fa-stopwatch"></i> Focus Timer</a>
+                <a href="{{ url_for('quiz_page') }}" class="nav-item {% if request.endpoint == 'quiz_page' %}active{% endif %}"><i class="fa-solid fa-brain"></i> Quiz</a>
+                <a href="{{ url_for('progress_page') }}" class="nav-item {% if request.endpoint == 'progress_page' %}active{% endif %}"><i class="fa-solid fa-chart-line"></i> Progress</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="{{ url_for('about_page') }}" class="nav-item {% if request.endpoint == 'about_page' %}active{% endif %}"><i class="fa-solid fa-heart"></i> About</a>
+                <a href="{{ url_for('privacy_page') }}" class="nav-item {% if request.endpoint == 'privacy_page' %}active{% endif %}"><i class="fa-solid fa-shield-heart"></i> Privacy</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <button type="button" class="icon-btn menu-toggle" id="menu-toggle" aria-label="Open navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="header-title">
+                        <p class="header-kicker"><i class="fa-solid fa-star"></i> Keep going, you’ve got this</p>
+                        <h1 id="page-title">{% block header_title %}Dashboard{% endblock %}</h1>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <form class="header-search" id="global-search-form" action="{{ url_for('tasks_page') }}" method="get" role="search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="search" name="q" placeholder="Search tasks..." aria-label="Search tasks">
+                    </form>
+                    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+                        <i class="fa-solid fa-moon" id="theme-toggle-icon"></i>
+                    </button>
+                    <div class="header-user">
+                        <span class="avatar" aria-hidden="true"><i class="fa-solid fa-user"></i></span>
+                        <span>Student</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    {% block extra_js %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>

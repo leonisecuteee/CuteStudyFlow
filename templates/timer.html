@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}StudyFlow - Focus Timer{% endblock %}
+{% block header_title %}Focus Timer{% endblock %}
+
+{% block content %}
+<section class="content-section active">
+    <div class="timer-card">
+        <!-- Timer Mode Selector -->
+        <div class="mode-toggle" style="margin-bottom: 24px; display: flex; justify-content: center; gap: 12px;">
+            <button id="focus-mode-btn" class="btn btn-sm btn-primary">Focus Mode (25 min)</button>
+            <button id="break-mode-btn" class="btn btn-sm btn-outline">Break Mode (5 min)</button>
+        </div>
+
+        <!-- Subject Selection -->
+        <div class="form-group" style="max-width: 350px; margin: 0 auto 24px auto;">
+            <label for="timer-subject-input">Select Subject</label>
+            <input type="text" id="timer-subject-input" placeholder="e.g. Mathematics, Computer Science" required>
+        </div>
+
+        <!-- Live Display -->
+        <div class="timer-display" id="timer-display">25:00</div>
+
+        <!-- Controls -->
+        <div class="timer-controls">
+            <button id="timer-start" class="btn btn-success"><i class="fa-solid fa-play"></i> Start</button>
+            <button id="timer-pause" class="btn btn-warning" style="display: none;"><i class="fa-solid fa-pause"></i> Pause</button>
+            <button id="timer-resume" class="btn btn-success" style="display: none;"><i class="fa-solid fa-play"></i> Resume</button>
+            <button id="timer-reset" class="btn btn-danger"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+        </div>
+    </div>
+
+    <!-- Total Focus Stats & Logs -->
+    <div class="card" style="margin-top: 32px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <div class="flex-between">
+            <h2><i class="fa-solid fa-chart-line"></i> Total Focus Sessions</h2>
+            <div style="font-size: 18px; font-weight: 700; color: var(--primary);">
+                Total Focus Time: <span id="total-focus-minutes-display">0</span> minutes
+            </div>
+        </div>
+
+        <div class="table-container" style="margin-top: 16px;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Duration</th>
+                        <th>Mode</th>
+                        <th>Completed At</th>
+                    </tr>
+                </thead>
+                <tbody id="timer-history-tbody">
+                    <!-- Dynamic log rows -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
